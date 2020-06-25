@@ -14,10 +14,7 @@ code, the source code can be found at [https://github.com/newrelic/wiki-sync-act
 
 **[dependencies](#dependencies)**
 
-- [Third Party Notices](#third-party-notices)
-  - [Content](#content)
-  - [dependencies](#dependencies)
-    - [SwiftDocOrg/github-wiki-publish-action](#swiftdocorggithub-wiki-publish-action)
+- [SwiftDocOrg/github-wiki-publish-action](#swiftdocorggithub-wiki-publish-action)
 
 ## dependencies
 

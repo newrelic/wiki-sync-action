@@ -1,4 +1,4 @@
-[![Community Project header](https://github.com/newrelic/open-source-office/raw/master/examples/categories/images/Community_Project.png)](https://github.com/newrelic/open-source-office/blob/master/examples/categories/index.md#community-project)
+[![Community Project header](https://github.com/newrelic/opensource-website/raw/master/src/images/categories/Community_Project.png)](https://opensource.newrelic.com/oss-category/#community-project)
 
 # Bi-directional Wiki Sync Action
 
@@ -12,20 +12,27 @@ This project is a fork of [SwiftDocOrg/github-wiki-publish-action](https://githu
 
 ## Inputs
 
-| Key              | Required | Default                                 | Description                                                                |
-| ---------------- | -------- | --------------------------------------- | -------------------------------------------------------------------------- |
-| `source`         | yes      | -                                       | Source directory/location of file sync (ex: `docs`).                       |
-| `destination`    | yes      | -                                       | Destination directory/location for file sync (ex: `wiki`).                 |
-| `token`          | yes      | -                                       | Github personal access token with at least 'repo' authorization.           |
-| `gitAuthorName`  | no       | `github.actor`                          | Author name to use for committing to repository.                           |
-| `gitAuthorEmail` | no       | `github.actor@users.noreply.github.com` | Author name to use for committing to repository.                           |
-| `branch`         | no       | `master`                                | Default branch to commit to. Only needed when syncing wiki to a directory. |
-| `commitMessage`  | no       | `chore(docs): Sync $1 to $2 [skip-cd]`  | Message for committing files to repository.                                |
-
+| Key              | Required | Default                                               | Description                                                                |
+| ---------------- | -------- | ----------------------------------------------------- | -------------------------------------------------------------------------- |
+| `source`         | yes      | -                                                     | Source directory/location of file sync (ex: `docs`).                       |
+| `destination`    | yes      | -                                                     | Destination directory/location for file sync (ex: `wiki`).                 |
+| `token`          | yes      | -                                                     | Github personal access token with at least 'repo' authorization.           |
+| `gitAuthorName`  | no       | `github.actor`                                        | Author name to use for committing to repository.                           |
+| `gitAuthorEmail` | no       | `github.actor@users.noreply.github.com`               | Author name to use for committing to repository.                           |
+| `branch`         | no       | `master`                                              | Default branch to commit to. Only needed when syncing wiki to a directory. |
+| `commitMessage`  | no       | `chore(docs): Sync $SOURCE to $DESTINATION [skip-cd]` | Message for committing files to repository.                                |
 
 ## Example Usage
 
-### Basic validation
+This Action is utilized by opensource.newrelic.com to keep our [docs](https://github.com/newrelic/opensource-website/tree/develop/docs) and [Wiki](https://github.com/newrelic/opensource-website/wiki) in sync. To see the implementation, visit [newrelic/opensource-website](https://github.com/newrelic/opensource-website/blob/develop/.github/workflows/docs.yml).
+
+**Wiki**:
+![opensource-website wiki](./screenshots/screenshot-01.png)
+
+**Workflows**:
+![workflow runs](./screenshots/screenshot-02.png)
+
+### Bi-directional Sync Workflow
 
 The following example shows how to use the `wiki-sync-action` in conjunction with the `gollum` event.
 
@@ -84,10 +91,19 @@ jobs:
           branch: develop # since default branch is develop in this example
 ```
 
+## Support
+
+New Relic hosts and moderates an online forum where customers can interact with New Relic employees as well as other customers to get help and share best practices. Like all official New Relic open source projects, there's a related Community topic in the New Relic Explorers Hub. You can find this project's topic/threads here:
+
+[https://discuss.newrelic.com/t/open-source-maintainers-keep-repo-documentation-in-sync-with-the-bi-directional-wiki-sync-github-action/105611](https://discuss.newrelic.com/t/open-source-maintainers-keep-repo-documentation-in-sync-with-the-bi-directional-wiki-sync-github-action/105611)
+
 ## Contributing
-We encourage your contributions to improve Wiki Sync Action! Keep in mind when you submit your pull request, you'll need to sign the CLA via the click-through using CLA-Assistant. You only have to sign the CLA one time per project.
-If you have any questions, or to execute our corporate CLA, required if your contribution is on behalf of a company, please drop us an email at opensource@newrelic.com.
+
+Contributions are encouraged! If you submit an enhancement request, we'll invite you to contribute the change yourself. Please review our [Contributors Guide](CONTRIBUTING.md).
+
+Keep in mind that when you submit your pull request, you'll need to sign the CLA via the click-through using CLA-Assistant. If you'd like to execute our corporate CLA, or if you have any questions, please drop us an email at opensource+wiki-sync-action@newrelic.com.
 
 ## License
+
 Wiki Sync Action is licensed under the [Apache 2.0](http://apache.org/licenses/LICENSE-2.0.txt) License.
->This repo also uses source code from third party libraries. Full details on which libraries are used and the terms under which they are licensed can be found in the third party notices document.
+>The wiki-sync-action also uses source code from third party libraries. Full details on which libraries are used and the terms under which they are licensed can be found in the third party notices document.
