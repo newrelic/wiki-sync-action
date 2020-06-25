@@ -2,7 +2,7 @@
 
 # Bi-directional Wiki Sync Action
 
-[![GitHub Marketplace version](https://img.shields.io/github/release/newrelic/bi-directional-wiki-sync-action.svg?label=Marketplace&logo=github)](https://github.com/marketplace/actions/bi-directional-wiki-sync-action)
+[![GitHub Marketplace version](https://img.shields.io/github/release/newrelic/wiki-sync-action.svg?label=Marketplace&logo=github)](https://github.com/marketplace/actions/bi-directional-wiki-sync-action)
 
 A GitHub Action that synchronizes the contents of a directory to the repository's Wiki.
 
