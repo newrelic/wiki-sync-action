@@ -93,7 +93,7 @@ if [ "$DIFF" != "" ]; then
   debug "Syncing contents of $SOURCE to $DESTINATION"
 
   # Check which direction the sync is occurring
-  if [ "$DESTINATION" = "wiki" ] # $SOURCE -> wiki
+  if [ "$DESTINATION" = "wiki" ]; then # $SOURCE -> wiki
     rsync -avzr --delete --exclude='.git/' "$SOURCE/" "$tmp_dir"
     debug "Committing and pushing changes"
     (
