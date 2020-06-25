@@ -54,7 +54,7 @@ fi
 
 if [ -z "${WIKI_COMMIT_MESSAGE:-}" ]; then
     debug "WIKI_COMMIT_MESSAGE not set, using default"
-    WIKI_COMMIT_MESSAGE="chore(docs): Sync $1 to $2 [skip-cd]"
+    WIKI_COMMIT_MESSAGE="chore(docs): Sync $SOURCE to $DESTINATION [skip-cd]"
 fi
 
 ###############################################################################
