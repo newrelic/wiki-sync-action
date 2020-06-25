@@ -1,0 +1,43 @@
+name: "Bi-directional Wiki Sync Action"
+description: "Provides bi-directional sync between a directory and a project's Wiki"
+
+inputs:
+  source:
+    description: "Source directory/location of file sync (ex: `docs`)."
+    required: true
+  destination:
+    description: "Destination directory/location for file sync (ex: `wiki`)."
+    required: true
+  token:
+    description: "Github personal access token with at least 'repo' authorization."
+    required: true
+  gitAuthorName:
+    description: "Author name to use for committing to repository. Default: `github.actor`"
+    default: ${{ github.actor }}
+    required: false
+  gitAuthorEmail:
+    description: "Author name to use for committing to repository. Default: `github.actor@users.noreply.github.com"
+    required: false
+  branch:
+    description: "Default branch to commit to. Default: `master`"
+    default: master
+    required: false
+  commitMessage:
+    description: "Message for committing files to repository."
+    required: false
+
+runs:
+  using: "docker"
+  image: "Dockerfile"
+  env:
+    SOURCE: ${{ inputs.source }}
+    DESTINATION: ${{ inputs.destination }}
+    GITHUB_PERSONAL_ACCESS_TOKEN: ${{ inputs.token }}
+    GIT_AUTHOR_NAME: ${{ inputs.gitAuthorName }}
+    GIT_AUTHOR_EMAIL: ${{ inputs.gitAuthorEmail }}
+    WIKI_COMMIT_MESSAGE: ${{ inputs.commitMessage }}
+    BRANCH: ${{ inputs.branch }}
+
+branding:
+  icon: "refresh-cw"
+  color: "orange"
