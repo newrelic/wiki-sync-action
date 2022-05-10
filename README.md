@@ -63,7 +63,7 @@ jobs:
       - name: Checkout Repo
         uses: actions/checkout@v2
       - name: Sync docs to wiki
-        uses: newrelic/wiki-sync-action@master
+        uses: newrelic/wiki-sync-action@main
         with:
           source: docs
           destination: wiki
@@ -81,7 +81,7 @@ jobs:
           token: ${{ secrets.NEWRELIC_BOT_TOKEN }} # allows us to push back to repo
           ref: develop
       - name: Sync Wiki to Docs
-        uses: newrelic/wiki-sync-action@master
+        uses: newrelic/wiki-sync-action@main
         with:
           source: wiki
           destination: docs
