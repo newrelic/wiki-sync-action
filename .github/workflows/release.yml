@@ -23,7 +23,7 @@ jobs:
           node-version: 'lts/*'
 
       - name: Add plugins for semantic release
-        run: npm install @semantic-release/git @semantic-release/changelog
+        run: npm install @semantic-release/git @semantic-release/changelog @semantic-release/github
 
       - name: Run semantic-release
         env:
