@@ -10,6 +10,7 @@ function warning() {
 
 function error() {
     echo "::error file=${BASH_SOURCE[0]},line=${BASH_LINENO[0]}::$1"
+    exit 1
 }
 
 function add_mask() {
@@ -20,17 +21,14 @@ function add_mask() {
 ###############################################################################
 if [ -z "$SOURCE" ]; then
   error "SOURCE environment variable is not set"
-  exit 1
 fi
 
 if [ -z "$DESTINATION" ]; then
   error "DESTINATION environment variable is not set"
-  exit 1
 fi
 
 if [ -z "$GITHUB_PERSONAL_ACCESS_TOKEN" ]; then
   error "GITHUB_PERSONAL_ACCESS_TOKEN environment variable is not set"
-  exit 1
 fi
 
 if [ "$SOURCE" = "wiki" ]; then
@@ -39,7 +37,6 @@ elif [ "$DESTINATION" = "wiki" ]; then
   SYNC_DIRECTORY=$SOURCE
 else 
   error "Either SOURCE or DESTINATION must be set to 'wiki'"
-  exit 1
 fi
 
 add_mask "${GITHUB_PERSONAL_ACCESS_TOKEN}"
@@ -62,7 +59,6 @@ fi
 ###############################################################################
 if [ -z "$GITHUB_REPOSITORY" ]; then
     error "GITHUB_REPOSITORY environment variable is not set"
-    exit 1
 fi
 GIT_REPOSITORY_URL="https://${GITHUB_PERSONAL_ACCESS_TOKEN}@github.com/$GITHUB_REPOSITORY.wiki.git"
 
@@ -78,7 +74,7 @@ tmp_dir=$(mktemp -d -t ci-XXXXXXXXXX)
   git config user.name "$GIT_AUTHOR_NAME"
   git config user.email "$GIT_AUTHOR_EMAIL"
   git pull "$GIT_REPOSITORY_URL"
-)
+) || error "Failed to checkout wiki repository"
 
 ###############################################################################
 ## Sync files if there's a diff between source and destination
@@ -101,9 +97,9 @@ if [ "$DIFF" != "" ]; then
         ### Workaround: add github workspace as safe directory
         git config --global --add safe.directory "$tmp_dir"
         git add .
-        git commit -m "$WIKI_COMMIT_MESSAGE"
+        git commit -m "$WIKI_COMMIT_MESSAGE" && \
         git push --set-upstream "$GIT_REPOSITORY_URL" master
-    )
+    ) || error "Failed to commit to wiki repository"
   else # wiki -> $DESTINATION
     rsync -avzr --delete --exclude='.git/' "$tmp_dir/" "$DESTINATION"
     debug "Committing and pushing changes"
@@ -119,9 +115,9 @@ if [ "$DIFF" != "" ]; then
       # git pull --ff-only origin develop
       
       git add .
-      git commit -m "$WIKI_COMMIT_MESSAGE"
+      git commit -m "$WIKI_COMMIT_MESSAGE" && \
       git push origin $BRANCH
-    )
+    ) || error "Failed to commit to sync repository"
   fi
 else 
     warning "No file diff between $SOURCE and $DESTINATION. Exiting."
