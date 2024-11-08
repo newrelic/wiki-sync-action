@@ -57,6 +57,11 @@ if [ -z "${WIKI_COMMIT_MESSAGE:-}" ]; then
     WIKI_COMMIT_MESSAGE="chore(docs): Sync $SOURCE to $DESTINATION [skip-cd]"
 fi
 
+if [ -z "${GITHUB_URL:-}"]; then
+    debug "GITHUB_URL not set, using default"
+    GITHUB_URL="github.com"
+fi
+
 ###############################################################################
 ## Set wiki repo URL
 ###############################################################################
@@ -64,7 +69,7 @@ if [ -z "$GITHUB_REPOSITORY" ]; then
     error "GITHUB_REPOSITORY environment variable is not set"
     exit 1
 fi
-GIT_REPOSITORY_URL="https://${GITHUB_PERSONAL_ACCESS_TOKEN}@github.com/$GITHUB_REPOSITORY.wiki.git"
+GIT_REPOSITORY_URL="https://${GITHUB_PERSONAL_ACCESS_TOKEN}@$GITHUB_URL/$GITHUB_REPOSITORY.wiki.git"
 
 
 ###############################################################################

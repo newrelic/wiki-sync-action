@@ -21,6 +21,7 @@ This project is a fork of [SwiftDocOrg/github-wiki-publish-action](https://githu
 | `gitAuthorEmail` | no       | `github.actor@users.noreply.github.com`               | Author name to use for committing to repository.                           |
 | `branch`         | no       | `master`                                              | Default branch to commit to. Only needed when syncing wiki to a directory. |
 | `commitMessage`  | no       | `chore(docs): Sync $SOURCE to $DESTINATION [skip-cd]` | Message for committing files to repository.                                |
+| `githubUrl`      | no       | `github.com`                                          | Custom URL for GitHub Enterprise instances.                                |
 
 ## Example Usage
 
@@ -70,7 +71,7 @@ jobs:
           token: ${{ secrets.NEWRELIC_BOT_TOKEN }}
           gitAuthorName: ${{ env.GIT_AUTHOR_NAME }}
           gitAuthorEmail: ${{ env.GIT_AUTHOR_EMAIL }}
-  
+
   job-sync-wiki-to-docs:
     runs-on: ubuntu-latest
     if: github.event_name == 'gollum'
@@ -106,4 +107,5 @@ Keep in mind that when you submit your pull request, you'll need to sign the CLA
 ## License
 
 Wiki Sync Action is licensed under the [Apache 2.0](http://apache.org/licenses/LICENSE-2.0.txt) License.
->The wiki-sync-action also uses source code from third party libraries. Full details on which libraries are used and the terms under which they are licensed can be found in the third party notices document.
+
+> The wiki-sync-action also uses source code from third party libraries. Full details on which libraries are used and the terms under which they are licensed can be found in the third party notices document.

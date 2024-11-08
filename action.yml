@@ -25,6 +25,9 @@ inputs:
   commitMessage:
     description: "Message for committing files to repository."
     required: false
+  githubUrl:
+    description: "Custom URL for GitHub Enterprise instances. Default: `github.com`"
+    required: false
 
 runs:
   using: "docker"
@@ -37,6 +40,7 @@ runs:
     GIT_AUTHOR_EMAIL: ${{ inputs.gitAuthorEmail }}
     WIKI_COMMIT_MESSAGE: ${{ inputs.commitMessage }}
     BRANCH: ${{ inputs.branch }}
+    GITHUB_URL: ${{ inputs.githubUrl }}
 
 branding:
   icon: "refresh-cw"
