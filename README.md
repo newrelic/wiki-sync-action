@@ -16,7 +16,7 @@ This project is a fork of [SwiftDocOrg/github-wiki-publish-action](https://githu
 | ---------------- | -------- | ----------------------------------------------------- | -------------------------------------------------------------------------- |
 | `source`         | yes      | -                                                     | Source directory/location of file sync (ex: `docs`).                       |
 | `destination`    | yes      | -                                                     | Destination directory/location for file sync (ex: `wiki`).                 |
-| `token`          | yes      | -                                                     | Github personal access token with at least 'repo' authorization.           |
+| `token`          | yes      | -                                                     | Github personal access token with at least 'Repository permissions'->'Contents' authorization. More info [here](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens)                                              |
 | `gitAuthorName`  | no       | `github.actor`                                        | Author name to use for committing to repository.                           |
 | `gitAuthorEmail` | no       | `github.actor@users.noreply.github.com`               | Author name to use for committing to repository.                           |
 | `branch`         | no       | `master`                                              | Default branch to commit to. Only needed when syncing wiki to a directory. |
